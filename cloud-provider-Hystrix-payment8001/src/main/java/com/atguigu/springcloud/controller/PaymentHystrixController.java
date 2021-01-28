@@ -32,4 +32,11 @@ public class PaymentHystrixController {
         log.info(hystrixService_timeout);
         return hystrixService_timeout;
     }
+
+    @GetMapping("/payment/circuit/{id}")
+    public String paymentCircuitFaiiback(@PathVariable("id") Long id) {
+        String result = paymentHystrixService.paymentCircuitFaiiback(id);
+        log.info("******result:"+result);
+        return result;
+    }
 }
