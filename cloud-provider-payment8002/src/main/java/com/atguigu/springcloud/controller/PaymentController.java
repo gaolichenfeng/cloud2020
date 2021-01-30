@@ -28,35 +28,40 @@ public class PaymentController {
     @PostMapping("/payment/create")
     public CommonResult create(@RequestBody Payment payment) {
         int i = paymentService.create(payment);
-        log.info("插入结果:"+i);
+        log.info("插入结果:" + i);
         if (i > 0) {
-            return new CommonResult(200,"success,serverPort:"+serverPort,payment);
+            return new CommonResult(200, "success,serverPort:" + serverPort, payment);
         } else {
-            return new CommonResult(444,"fail",payment);
+            return new CommonResult(444, "fail", payment);
         }
     }
 
     @GetMapping("/payment/get/{id}")
     public CommonResult getPayment(@PathVariable("id") Long id) {
         Payment payment = paymentService.getPayment(id);
-        log.info("返回结果:"+payment+"\t"+"qwq");
+        log.info("返回结果:" + payment + "\t" + "qwq");
         if (null == payment) {
-            return new CommonResult(444,"fail"+id,null);
+            return new CommonResult(444, "fail" + id, null);
         } else {
-            return new CommonResult(200,"success,serverPort:"+serverPort,payment);
+            return new CommonResult(200, "success,serverPort:" + serverPort, payment);
         }
+    }
+
+    @GetMapping("/payment/lb")
+    public String getServerPort() {
+        return serverPort;
     }
 
     @GetMapping(value = "/payment/discovery")
     public Object getDiscovery() {
         List<String> services = discoveryClient.getServices();
         for (String service : services) {
-            log.info("*****service"+service);
+            log.info("*****service" + service);
         }
 
         List<ServiceInstance> instances = discoveryClient.getInstances("CLOUD-PAYMENT-SERVICE");
         for (ServiceInstance instance : instances) {
-            log.info("*****instance:"+instance.getInstanceId()+"\t"+instance.getHost()+"\t"+instance.getUri());
+            log.info("*****instance:" + instance.getInstanceId() + "\t" + instance.getHost() + "\t" + instance.getUri());
         }
 
         return this.discoveryClient;
