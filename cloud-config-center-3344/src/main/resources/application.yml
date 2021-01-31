@@ -7,11 +7,23 @@ spring:
     config:
       server:
         git:
-          uri:  https://github.com/a857314548/springcloud-config.git
+          uri: https://github.com/a857314548/springcloud-config.git
           search-paths:
             - springcloud-config
       label: main  #github默认主分支是main--
+
+
+  rabbitmq:
+    host: 47.113.207.103
+    port: 5672
+    username: guest
+    password: guest
 eureka:
   client:
     service-url:
-      defaultZone:  http://localhost:7001/eureka
+      defaultZone: http://localhost:7001/eureka
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "bus-refresh"
