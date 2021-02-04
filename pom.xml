@@ -33,6 +33,7 @@
     <module>cloudalibaba-provider-payment9002</module>
     <module>cloudalibaba-nacos-consumer-order83</module>
     <module>cloudalibaba-nacos-config-client3377</module>
+    <module>cloudalibaba-sentinel-service8401</module>
   </modules>
   <packaging>pom</packaging>
 
@@ -108,6 +109,8 @@
         <version>${lombok.version}</version>
         <optional>true</optional>
       </dependency>
+
+
     </dependencies>
   </dependencyManagement>
 
