@@ -58,6 +58,7 @@ public class FlowLimitController {
     @SentinelResource(value = "testHotKey",blockHandler = "deal_testHotKey")
     public String testHotKey(@RequestParam(name = "p1",required = false) String p1,
                              @RequestParam(name = "p2",required = false) String p2) {
+        int age = 10/0;
         return "-----------test Hotkey";
     }
 
